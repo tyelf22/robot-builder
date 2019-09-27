@@ -15,6 +15,7 @@
     </v-app-bar>
 
     <v-content>
+      <div class="mt-12"></div>
       <RobotBuilder/>
     </v-content>
   </v-app>

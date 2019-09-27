@@ -3,10 +3,10 @@
     <div class="top-row">
       <div class="top part">
         <img v-bind:src="availableParts.heads[ selectNextHeadIndex ].src" title="head"/>
-        <v-btn fab small dark color="primary" @click="selectPreviousHead()" class="prev-up">
+        <v-btn fab small dark color="primary" @click="selectPreviousHead()" class="prev-up-top">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-        <v-btn fab small dark color="primary" @click="selectNextHead()" class="next-up">
+        <v-btn fab small dark color="primary" @click="selectNextHead()" class="next-up-top">
           <v-icon>mdi-arrow-right</v-icon>
         </v-btn>
       </div>
@@ -32,10 +32,10 @@
       </div>
       <div class="right part">
         <img v-bind:src="availableParts.arms[ selectNextRightArmIndex ].src" title="right arm"/>
-        <v-btn fab small dark color="primary" @click="selectPrevRightArm" class="prev-selector">
+        <v-btn fab small dark color="primary" @click="selectPrevRightArm" class="prev-selector-right">
           <v-icon>mdi-arrow-up</v-icon>
         </v-btn>
-        <v-btn fab small dark color="primary" @click="selectNextRightArm" class="next-selector">
+        <v-btn fab small dark color="primary" @click="selectNextRightArm" class="next-selector-right">
           <v-icon>mdi-arrow-down</v-icon>
         </v-btn>
       </div>
@@ -43,16 +43,16 @@
     <div class="bottom-row">
       <div class="bottom part">
         <img v-bind:src="availableParts.bases[ selectNextBottomIndex ].src" title="bottom"/>
-        <v-btn fab small dark color="primary" @click="selectPrevBottom" class="prev-selector">
+        <v-btn fab small dark color="primary" @click="selectPrevBottom" class="prev-selector-base">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-        <v-btn fab small dark color="primary"  @click="selectNextBottom" class="next-selector">
+        <v-btn fab small dark color="primary"  @click="selectNextBottom" class="next-selector-base">
           <v-icon>mdi-arrow-right</v-icon>
         </v-btn>
       </div>
     </div>
-    <div>
-        <v-btn rounded color='primary'>Push Me</v-btn>
+    <div class="bottom-btn">
+        <v-btn @click="randomRobot" rounded x-large max-width="5px;" color='primary'>Random</v-btn>
     </div>
   </v-container>
 </template>
@@ -69,6 +69,10 @@ function getPreviousValidIndex(index, length) {
 function getNextValidIndex(index, length) {
     const incrementedIndex = index + 1;
     return incrementedIndex > length - 1 ? 0 : incrementedIndex;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 export default {
@@ -122,6 +126,13 @@ export default {
         },
         selectPrevBottom() {
             this.selectNextBottomIndex = getPreviousValidIndex(this.selectNextBottomIndex, availableParts.bases.length);
+        },
+        randomRobot() {
+          this.selectNextHeadIndex = getRandomInt(5);
+          this.selectNextLeftArmIndex = getRandomInt(5);
+          this.selectNextRightArmIndex = getRandomInt(5);
+          this.selectNextTorsoIndex = getRandomInt(3);
+          this.selectNextBottomIndex = getRandomInt(5);
         }
 
     }
@@ -152,6 +163,13 @@ export default {
   justify-content: space-around;
   border-top: none;
 }
+
+.bottom-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
 .head {
   border-bottom: none;
 }
@@ -176,20 +194,36 @@ export default {
   top: 130px;
   left: -45px;
 }
-.prev-up {
+
+.prev-selector-base {
   position: absolute;
   z-index:1;
-  top: 10px;
-  left: -45px;
+  top: 170px;
+  left: 30px;
+}
+
+.next-selector-base {
+  position: absolute;
+  z-index:1;
+  top: 170px;
+  right: 30px;
 
 }
 
-.next-up {
+
+.prev-up-top {
   position: absolute;
   z-index:1;
-  top: 10px;
-  right: -45px;
+  top: -50px;
+  left: 30px;
+}
 
+
+.next-up-top {
+    position: absolute;
+  z-index:1;
+  top: -50px;
+  right: 30px;
 }
 
 .next-selector {
@@ -199,9 +233,6 @@ export default {
   right: -45px;
 }
 
-.center .prev-selector, .center .next-selector {
-  opacity:0.8;
-}
 .left .prev-selector {
   top: 30px;
   left: -45px;
@@ -211,13 +242,12 @@ export default {
   bottom: 30px;
   left: -45px;    
 }
-.right .prev-selector {
-  top: 30px;
-  left: 180px;  
+.right .prev-selector-right {
+  top: -140px;
+  left: 170px;  
 }
-.right .next-selector {
-  top: auto;
-  bottom: -45px;
+.right .next-selector-right {
+  bottom: 75px;
   left: 130px;    
 }
 .right .next-selector {
