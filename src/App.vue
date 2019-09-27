@@ -1,67 +1,41 @@
 <template>
-  <div id="app">
-    <header>
-       <nav>
-         <ul>
-           <li class="nav-item">
-             <img class="logo" src="./assets/build-a-bot-logo.png">
-             Build-A-Bot
-           </li>
-         </ul>
-       </nav>
-    </header>
-    <main>
-    <RobotBuilder/>
-    </main>
-  </div>
+  <v-app>
+    <v-app-bar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Robot</span>
+        <span class="font-weight-light">Builder</span>
+      </v-toolbar-title>
+      <v-btn rounded color='primary' 
+        text
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+      >
+        <span class="mr-2">Latest Release</span>
+      </v-btn>
+    </v-app-bar>
+
+    <v-content>
+      <RobotBuilder/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-//import HomePage from './home/HomePage.vue'
-import RobotBuilder from './build/RobotBuilder.vue'
+import RobotBuilder from './build/RobotBuilder.vue';
+import { VApp, VAppBar, VToolbarTitle, VContent, VBtn } from 'vuetify/lib'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    RobotBuilder
-  }
-}
+    RobotBuilder,
+    VApp,
+    VAppBar,
+    VToolbarTitle,
+    VContent,
+    VBtn
+  },
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style>
-body {
-  background: linear-gradient(to bottom, #555, #999);
-  background-attachment: fixed;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-}
-
-main {
-  margin: 0 auto;
-  padding: 30px;
-  background-color: white;
-  width: 1024px;
-  min-height: 300px;
-}
-
-header {
-  background-color: #999;
-  width: 1084px;
-  margin: 0 auto;
-}
-ul {
-  padding: 3px;
-  display: flex;
-}
-.nav-item {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 22px;
-  border-right: 1px solid #bbb;
-}
-.logo {
-  vertical-align: middle;
-  height: 30px;
-}
-</style>

@@ -1,41 +1,65 @@
 <template>
-      <div>
+      <v-container>
     <div class="top-row">
       <div class="top part">
         <img v-bind:src="availableParts.heads[ selectNextHeadIndex ].src" title="head"/>
-        <button @click="selectPreviousHead()" class="prev-selector">&#9668;</button>
-        <button @click="selectNextHead()" class="next-selector">&#9658;</button>
+        <v-btn fab small dark color="primary" @click="selectPreviousHead()" class="prev-up">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn fab small dark color="primary" @click="selectNextHead()" class="next-up">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
       </div>
     </div>
     <div class="middle-row">
       <div class="left part">
         <img v-bind:src="availableParts.arms[ selectNextLeftArmIndex ].src" title="left arm"/>
-        <button @click="selectPreviousLeftArm" class="prev-selector">&#9650;</button>
-        <button @click="selectNextLeftArm" class="next-selector">&#9660;</button>
+        <v-btn fab small dark color="primary" @click="selectPreviousLeftArm" class="prev-selector">
+          <v-icon>mdi-arrow-up</v-icon>
+        </v-btn>
+        <v-btn  fab small dark color="primary" @click="selectNextLeftArm" class="next-selector">
+          <v-icon>mdi-arrow-down</v-icon>
+        </v-btn>
       </div>
       <div class="center part">
         <img v-bind:src="availableParts.torsos[selectNextTorsoIndex].src" title="torso"/>
-        <button @click="selectPrevTorso" class="prev-selector">&#9668;</button>
-        <button @click="selectNextTorso" class="next-selector">&#9658;</button>
+        <v-btn fab small dark color="primary" @click="selectPrevTorso" class="prev-selector">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn fab small dark color="primary" @click="selectNextTorso" class="next-selector">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
       </div>
       <div class="right part">
         <img v-bind:src="availableParts.arms[ selectNextRightArmIndex ].src" title="right arm"/>
-        <button @click="selectPrevRightArm" class="prev-selector">&#9650;</button>
-        <button @click="selectNextRightArm" class="next-selector">&#9660;</button>
+        <v-btn fab small dark color="primary" @click="selectPrevRightArm" class="prev-selector">
+          <v-icon>mdi-arrow-up</v-icon>
+        </v-btn>
+        <v-btn fab small dark color="primary" @click="selectNextRightArm" class="next-selector">
+          <v-icon>mdi-arrow-down</v-icon>
+        </v-btn>
       </div>
     </div>
     <div class="bottom-row">
       <div class="bottom part">
         <img v-bind:src="availableParts.bases[ selectNextBottomIndex ].src" title="bottom"/>
-        <button @click="selectPrevBottom" class="prev-selector">&#9668;</button>
-        <button @click="selectNextBottom" class="next-selector">&#9658;</button>
+        <v-btn fab small dark color="primary" @click="selectPrevBottom" class="prev-selector">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn fab small dark color="primary"  @click="selectNextBottom" class="next-selector">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
       </div>
     </div>
-  </div>
+    <div>
+        <v-btn rounded color='primary'>Push Me</v-btn>
+    </div>
+  </v-container>
 </template>
 
 <script>
 import availableParts from '../data/parts';
+import {VBtn, VIcon} from 'vuetify/lib'
 
 function getPreviousValidIndex(index, length) {
     const deprecatedIndex = index - 1;
@@ -57,6 +81,12 @@ export default {
             selectNextRightArmIndex: 0, 
             selectNextTorsoIndex: 0,
             selectNextBottomIndex: 0,
+        };
+    },
+    components: function () {
+        return {
+            VBtn,
+            VIcon
         };
     },
     methods: {
@@ -100,11 +130,11 @@ export default {
 
 <style scoped>
 
+
 .part {
   position: relative;
   width:165px;
   height:165px;
-  border: 3px solid #aaa;
 } 
 .part img {
   width:165px;
@@ -143,47 +173,52 @@ export default {
 .prev-selector {
   position: absolute;
   z-index:1;
-  top: -3px;
-  left: -28px;
-  width: 25px;
-  height: 171px;
+  top: 130px;
+  left: -45px;
 }
+.prev-up {
+  position: absolute;
+  z-index:1;
+  top: 10px;
+  left: -45px;
+
+}
+
+.next-up {
+  position: absolute;
+  z-index:1;
+  top: 10px;
+  right: -45px;
+
+}
+
 .next-selector {
   position: absolute;
   z-index:1;
-  top: -3px;
-  right: -28px;
-  width: 25px;
-  height: 171px;
+  top: 130px;
+  right: -45px;
 }
+
 .center .prev-selector, .center .next-selector {
   opacity:0.8;
 }
 .left .prev-selector {
-  top: -28px;
-  left: -3px;
-  width: 144px;
-  height: 25px;
+  top: 30px;
+  left: -45px;
 }
 .left .next-selector {
   top: auto;
-  bottom: -28px;
-  left: -3px;    
-  width: 144px;
-  height: 25px;
+  bottom: 30px;
+  left: -45px;    
 }
 .right .prev-selector {
-  top: -28px;
-  left: 24px;  
-  width: 144px;
-  height: 25px;
+  top: 30px;
+  left: 180px;  
 }
 .right .next-selector {
   top: auto;
-  bottom: -28px;
-  left: 24px;    
-  width: 144px;
-  height: 25px;
+  bottom: -45px;
+  left: 130px;    
 }
 .right .next-selector {
   right: -3px;
