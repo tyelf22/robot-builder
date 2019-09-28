@@ -1,8 +1,15 @@
 <template>
       <v-container>
+        <div class="content">
+          <v-btn class="addToCart"> Add to Cart</v-btn>
+        </div>
+        <div class="robot-name">
+          {{selectedRobot.head.title}}
+          <span v-if="selectedRobot.head.onSale" class="sale">Sale!</span>
+        </div>
     <div class="top-row">
       <div class="top part">
-        <img v-bind:src="availableParts.heads[ selectNextHeadIndex ].src" title="head"/>
+        <img :src="selectedRobot.head.src" title="head"/>
         <v-btn fab small dark color="primary" @click="selectPreviousHead()" class="prev-up-top">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
@@ -13,7 +20,7 @@
     </div>
     <div class="middle-row">
       <div class="left part">
-        <img v-bind:src="availableParts.arms[ selectNextLeftArmIndex ].src" title="left arm"/>
+        <img :src="selectedRobot.leftArm.src" title="left arm"/>
         <v-btn fab small dark color="primary" @click="selectPreviousLeftArm" class="prev-selector">
           <v-icon>mdi-arrow-up</v-icon>
         </v-btn>
@@ -22,7 +29,7 @@
         </v-btn>
       </div>
       <div class="center part">
-        <img v-bind:src="availableParts.torsos[selectNextTorsoIndex].src" title="torso"/>
+        <img :src="selectedRobot.torso.src" title="torso"/>
         <v-btn fab small dark color="primary" @click="selectPrevTorso" class="prev-selector">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
@@ -31,7 +38,7 @@
         </v-btn>
       </div>
       <div class="right part">
-        <img v-bind:src="availableParts.arms[ selectNextRightArmIndex ].src" title="right arm"/>
+        <img :src="selectedRobot.rightArm.src" title="right arm"/>
         <v-btn fab small dark color="primary" @click="selectPrevRightArm" class="prev-selector-right">
           <v-icon>mdi-arrow-up</v-icon>
         </v-btn>
@@ -42,7 +49,7 @@
     </div>
     <div class="bottom-row">
       <div class="bottom part">
-        <img v-bind:src="availableParts.bases[ selectNextBottomIndex ].src" title="bottom"/>
+        <img :src="selectedRobot.base.src" title="bottom"/>
         <v-btn fab small dark color="primary" @click="selectPrevBottom" class="prev-selector-base">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
@@ -60,6 +67,7 @@
 <script>
 import availableParts from '../data/parts';
 import {VBtn, VIcon} from 'vuetify/lib'
+
 
 function getPreviousValidIndex(index, length) {
     const deprecatedIndex = index - 1;
@@ -92,6 +100,19 @@ export default {
             VBtn,
             VIcon
         };
+    },
+
+    computed: {
+      selectedRobot() {
+        return {
+          head: availableParts.heads[this.selectNextHeadIndex],
+          leftArm: availableParts.arms[this.selectNextLeftArmIndex],
+          rightArm: availableParts.arms[this.selectNextRightArmIndex],
+          torso: availableParts.torsos[this.selectNextTorsoIndex],
+          base: availableParts.bases[this.selectNextBottomIndex],
+        };
+      },
+
     },
     methods: {
         selectNextHead() {
@@ -140,7 +161,6 @@ export default {
 </script>
 
 <style scoped>
-
 
 .part {
   position: relative;
@@ -253,5 +273,28 @@ export default {
 .right .next-selector {
   right: -3px;
 }
+
+.robot-name {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+  text-align: center;
+  width: 100%;
+  font-size: 23px;
+  font-family: 'Audiowide', sans-serif;
+  }
+
+  .sale {
+    color: red;
+  }
+
+  .content {
+    position: relative;
+  }
+
+  .addToCart {
+    position: absolute;
+    right: 30px;
+  }
 
 </style>

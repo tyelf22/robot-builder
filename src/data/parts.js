@@ -6,7 +6,7 @@ const parts = {
       id: 1,
       description:
         'A robot head with an unusually large eye and teloscpic neck -- excellent for exploring high spaces.',
-      title: 'Large Cyclops',
+      title: 'Worker Bot',
       src: images('./head-big-eye.png'),
       type: 'heads',
       cost: 1225.5
@@ -24,7 +24,7 @@ const parts = {
       id: 3,
       description:
         'A large three-eyed head with a shredder for a mouth -- great for crushing light medals or shredding documents.',
-      title: 'Shredder',
+      title: 'Shredder Bot',
       src: images('./head-shredder.png'),
       type: 'heads',
       cost: 1275.5
@@ -33,7 +33,7 @@ const parts = {
       id: 4,
       description:
         'A simple single-eyed head -- simple and inexpensive.',
-      title: 'Small Cyclops',
+      title: 'Cyclops Bot',
       src: images('./head-single-eye.png'),
       type: 'heads',
       cost: 750.0

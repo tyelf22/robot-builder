@@ -15,7 +15,7 @@
     </v-app-bar>
 
     <v-content>
-      <div class="mt-12"></div>
+      <div class="spacer"></div>
       <RobotBuilder/>
     </v-content>
   </v-app>
@@ -40,3 +40,10 @@ export default {
   }),
 };
 </script>
+
+<style>
+.spacer {
+  margin-bottom: 100px;
+}
+
+</style>
