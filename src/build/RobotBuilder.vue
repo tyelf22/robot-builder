@@ -1,7 +1,7 @@
 <template>
       <v-container>
         <div class="content">
-          <v-btn class="addToCart"> Add to Cart</v-btn>
+          <v-btn class="addToCart"><v-icon>mdi-shopping</v-icon> Add to Cart</v-btn>
         </div>
         <div class="robot-name">
           {{selectedRobot.head.title}}
@@ -295,6 +295,7 @@ export default {
   .addToCart {
     position: absolute;
     right: 30px;
+    top: -100px;
   }
 
 </style>
